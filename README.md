@@ -14,6 +14,8 @@ Docker build --target=libvips -t libvips .
 
 # build libheif and libvips with dependencies and all building tools inside image (About 4G disk space needs)
 Docker build --target=libvips -t vips-tool . 
+```
+
 
 ## Other docker build Args
 --build-args PLATFORM=linux/arm for `arm` arch
