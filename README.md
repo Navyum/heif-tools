@@ -40,10 +40,17 @@ Docker build --target=libvips -t vips-tool .
 
 ## Usage for heif tools
 After building heif-tools，use command as below to convert jpg2heif
+
+
 list encoders: `docker run --rm ${ghcr}/heif-tools heif-enc --list-encoders`
 
+
 with x265:  `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg -o xx.heif`
+
+
 with aom: `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg -A -o xx.avif`
+
+
 with acc: `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg --acc -o xx.heif`
 
 view boxs of heif: `docker run --rm --entrypoint heif-info ${ghcr}/heif-tools xx.heif`
