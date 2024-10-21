@@ -46,13 +46,13 @@ with x265:  `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg -o xx.heif`
 with aom: `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg -A -o xx.avif`
 with acc: `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg --acc -o xx.heif`
 
-view boxs of heif: `docker run --rm ${ghcr}/heif-tools --entrypoint heif-info xx.heif`
+view boxs of heif: `docker run --rm --entrypoint heif-info ${ghcr}/heif-tools xx.heif`
 
-## Usage for vips tools
-After building vips-tools，use command as below to convert jpg2heif, other format to heif and other formats convert each other
+## Usage for vips tool
+After building vips-tool，use command as below to convert jpg2heif, other format to heif and other formats convert each other
 ```bash
-vips copy xx.jpg xx.heif
-vips copy xx.heif xx.webp
-vips copy xx.wepb xx.avif
-vips copy xx.avif xx.jpg
+docker run --rm ${ghcr}/heif-tools vips copy xx.jpg xx.heif
+docker run --rm ${ghcr}/heif-tools vips copy xx.heif xx.webp
+docker run --rm ${ghcr}/heif-tools vips copy xx.wepb xx.avif
+docker run --rm ${ghcr}/heif-tools vips copy xx.avif xx.jpg
 ```
