@@ -4,22 +4,26 @@ This Dockerfile aims for build libheif/libvips in centos7 easier. With this dock
 ## samples
 ```bash 
 # build libheif with dependencies and all building tools inside image (About 3.8G disk space needs)
-Docker build --target=libheif -t libheif . 
+`docker build --target=libheif -t libheif . `
 
 # build libheif and heif tools chains without dependencies inside image (About Only 400M disk space needs)
-Docker build --target=libheif -t heif-tools . 
+`docker build --target=libheif -t heif-tools . `
 
 # build libheif and libvips with dependencies and all building tools inside image (About 4G disk space needs)
-Docker build --target=libvips -t libvips . 
+`docker build --target=libvips -t libvips . `
 
 # build libheif and libvips with dependencies and all building tools inside image (About 4G disk space needs)
-Docker build --target=libvips -t vips-tool . 
+`docker build --target=libvips -t vips-tool . `
 ```
 
 
 ## Other docker build Args
---build-args PLATFORM=linux/arm for `arm` arch
+`docker build --build-args ARG=VAL`
 
+### platform chioce opts:
+--build-args PLATFORM=linux/arm64 for `arm` arch
+
+### dependcies libs version chioce opts:
 --build-args DE265_VERSION for libde265 version
 
 --build-args X265_VERSION for libx265 version
@@ -38,28 +42,25 @@ Docker build --target=libvips -t vips-tool .
 
 `note`: **Use default value is more recommended**
 
-## Usage for heif tools
+## Usage for heif tools (jpg to heif, heif to jpg)
 After building heif-tools，use command as below to convert jpg2heif
 
+### list encoders: 
+`docker run --rm -v /work/path:/container/path  ghcr.io/navyum/heif-tools:heif-tool heif-enc --list-encoders`
+### with x265:  
+`docker run --rm -v /work/path:/container/path ghcr.io/navyum/heif-tools:heif-tool heif-enc /container/path/xx.jpg -o /container/path/xx.heif`
+### with aom: 
+`docker run --rm -v /work/path:/container/path ghcr.io/navyum/heif-tools:heif-tool heif-enc /container/path/xx.jpg -A -o /container/path/xx.avif`
+### with acc: 
+`docker run --rm -v /work/path:/container/path ghcr.io/navyum/heif-tools:heif-tool heif-enc /container/path/xx.jpg --acc -o /container/path/xx.heif`
+### view boxs of heif: 
+`docker run --rm -v /work/path:/container/path --entrypoint heif-info ghcr.io/navyum/heif-tools:heif-tool /container/path/xx.heif`
 
-list encoders: `docker run --rm ${ghcr}/heif-tools heif-enc --list-encoders`
-
-
-with x265:  `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg -o xx.heif`
-
-
-with aom: `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg -A -o xx.avif`
-
-
-with acc: `docker run --rm ${ghcr}/heif-tools heif-enc xx.jpg --acc -o xx.heif`
-
-view boxs of heif: `docker run --rm --entrypoint heif-info ${ghcr}/heif-tools xx.heif`
-
-## Usage for vips tool
+## Usage for vips tool (convert more image format)
 After building vips-tool，use command as below to convert jpg2heif, other format to heif and other formats convert each other
 ```bash
-docker run --rm ${ghcr}/heif-tools vips copy xx.jpg xx.heif
-docker run --rm ${ghcr}/heif-tools vips copy xx.heif xx.webp
-docker run --rm ${ghcr}/heif-tools vips copy xx.wepb xx.avif
-docker run --rm ${ghcr}/heif-tools vips copy xx.avif xx.jpg
+docker run --rm -v /work/path:/container/path ghcr.io/navyum/heif-tools:vips-tool vips copy xx.jpg  xx.heif
+docker run --rm -v /work/path:/container/path ghcr.io/navyum/heif-tools:vips-tool vips copy xx.heif xx.webp
+docker run --rm -v /work/path:/container/path ghcr.io/navyum/heif-tools:vips-tool vips copy xx.wepb xx.avif
+docker run --rm -v /work/path:/container/path ghcr.io/navyum/heif-tools:vips-tool vips copy xx.avif xx.jpg
 ```
