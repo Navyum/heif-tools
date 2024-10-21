@@ -19,15 +19,24 @@ Docker build --target=libvips -t vips-tool .
 
 ## Other docker build Args
 --build-args PLATFORM=linux/arm for `arm` arch
+
 --build-args DE265_VERSION for libde265 version
+
 --build-args X265_VERSION for libx265 version
+
 --build-args AOM_VERSION for libaom version
+
 --build-args VVENC_VERSION for libvvenc version
+
 --build-args VVDEC_VERSION for libvvdec version
+
 --build-args LIBWEBP_VERSION for libwebp version
+
 --build-args LIBHEIF_VERSION for libheif version
+
 --build-args LIBVIPS_VERSION for libvips version
-`note`: Use default value is more recommended
+
+`note`: **Use default value is more recommended**
 
 ## Usage for heif tools
 After building heif-tools，use command as below to convert jpg2heif
