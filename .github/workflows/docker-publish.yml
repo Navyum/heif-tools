@@ -131,6 +131,6 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: |
             cosign sign --yes ghcr.io/navyum/heif-tools:libheif@${{ steps.build-and-push-heif-libs.outputs.digest }}
-            cosign sign --yes ghcr.io/navyum/heif-tools:heif-tool:libheif@${{ steps.build-and-push-heif-tools.outputs.digest }}
+            cosign sign --yes ghcr.io/navyum/heif-tools:heif-tool@${{ steps.build-and-push-heif-tools.outputs.digest }}
             cosign sign --yes ghcr.io/navyum/heif-tools:libvips@${{ steps.build-and-push-vips-libs.outputs.digest }}
             cosign sign --yes ghcr.io/navyum/heif-tools:vips-tool@${{ steps.build-and-push-vips-tool.outputs.digest }}
