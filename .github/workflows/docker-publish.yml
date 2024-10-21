@@ -130,7 +130,7 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: |
-            cosign sign --yes libheif@${DIGEST}
-            cosign sign --yes libvips@${DIGEST}
-            cosign sign --yes heif-tool@${DIGEST}
-            cosign sign --yes vips-tool@${DIGEST}
+            cosign sign --yes libheif@${{ steps.build-and-push-heif-libs.outputs.digest }}
+            cosign sign --yes libvips@${{ steps.build-and-push-heif-tools.outputs.digest }}
+            cosign sign --yes heif-tool@${{ steps.build-and-push-vips-libs.outputs.digest }}
+            cosign sign --yes vips-tool@${{ steps.build-and-push-vips-tool.outputs.digest }}
